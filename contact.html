@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - 512 Controller Clinic</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="images/favicon.png">
+<meta name="description" content="Contact 512 Controller Clinic in Austin, TX. Have questions about a repair or custom build? Email us today. Local drop-off and mail-in services available.">
+<meta property="og:title" content="512 Controller Clinic Contact">
+<meta property="og:image" content="https://512controllerclinic.netlify.app/images/logo.png">
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VP623EZ7RT"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VP623EZ7RT');
+</script>
+
+<body>
+<header>
+<div class="container">
+<a href="index.html" class="logo">
+<img src="images/logo.png" alt="512 Controller Clinic Logo">
+</a>
+
+<div class="menu-toggle" id="menuToggle">&#9776;</div>
+
+<nav id="mainNav">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="services.html">Services & Repairs</a></li>
+<li><a href="sell.html">Sell / Trade-In</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="warranty.html">Warranty</a></li>
+<li><a href="reviews.html">Reviews</a></li>
+<li><a href="diy-resources.html">DIY / Parts</a></li>
+<li><a href="request.html">Request Service</a></li>
+<li><a href="contact.html">Contact Us</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<main>
+<div class="container">
+<h2>Get in Touch</h2>
+<p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Have a general question that isn't for a quote? We're happy to help.</p>
+
+<div class="content-box" style="text-align: center;">
+<h3>Looking for a repair or a custom build?</h3>
+<p>For the fastest response and an accurate quote, please use our service form.</p>
+<a href="request.html" class="btn">Go to Request Form</a>
+
+<hr style="margin: 40px 0; border-color: #444;">
+
+<h3>For all other inquiries:</h3>
+<p style="font-size: 1.2rem; color: #f5f5f5;">
+<p style="display:none"><strong>Text Only:</strong> 833.714.5848<br></p>
+<strong>Email:</strong> 512ccatx@gmail.com
+</p>
+
+<p style="display:none"><a href="contact.vcf"
+class="btn btn-secondary"
+style="display: inline-flex; align-items: center; gap: 8px;">
+📲Save Our Contact Info
+</a>
+<p>
+</p>
+
+<p style="color: #ccc;">We are based in Austin, Texas.</p>
+</div>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<p>512 Controller Clinic - Austin, Texas</p>
+<p>"Reducing e-waste, one controller at a time."</p>
+<p style="display:none"> Text Only: <a href="sms:8337145848">833.714.5848</a> </p>
+<p> Email: <a href="mailto:512ccatx@gmail.com">512ccatx@gmail.com</a> </p>
+
+<div class="social-icons">
+<a href="https://www.facebook.com/profile.php?id=61583093071897" target="_blank" rel="noopener noreferrer">
+<img src="images/facebook_logo.png" alt="512 Controller Clinic on Facebook">
+</a>
+<a href="https://www.instagram.com/512controllerclinic" target="_blank" rel="noopener noreferrer">
+<img src="images/instagram_logo.png" alt="512 Controller Clinic on Instagram">
+</a>
+</div>
+</div>
+</footer>
+
+<p style="display:none"><a href="sms:8337145848" class="floating-text-btn">
+💬 Text Us
+</a>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const mainNav = document.getElementById('mainNav');
+
+menuToggle.addEventListener('click', function() {
+mainNav.classList.toggle('open');
+if (mainNav.classList.contains('open')) {
+menuToggle.innerHTML = '&#10005;'; 
+} else {
+menuToggle.innerHTML = '&#9776;'; 
+}
+});
+
+const navLinks = mainNav.querySelectorAll('a');
+navLinks.forEach(link => {
+link.addEventListener('click', function() {
+mainNav.classList.remove('open');
+menuToggle.innerHTML = '&#9776;';
+});
+});
+</script>
+
+</body>
+</html>

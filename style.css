@@ -1,0 +1,459 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* =========================================
+  1. GLOBAL VARIABLES & RESET
+  ========================================= */
+:root {
+   --bg-color: #1a1a1a;       /* Dark Grey Background */
+   --card-bg: #252525;        /* Slightly lighter for cards/forms */
+   --text-color: #f0f0f0;     /* Off-white text */
+   /* Lighter/Brighter Electric Blue (Your Brand Color) */
+   --neon-blue: #4dd2ff;      
+   --gold-warning: #ffd700;   /* Rush Service Warnings */
+   --red-danger: #ff4444;     /* DIY Disclaimers */
+}
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+body {
+   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+   background-color: var(--bg-color);
+   color: var(--text-color);
+   line-height: 1.6;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
+}
+.container {
+   max-width: 1100px;
+   margin: 0 auto;
+   padding: 0 30px;
+}
+/* =========================================
+  2. TYPOGRAPHY
+  ========================================= */
+h1, h2, h3, h4 {
+   color: var(--neon-blue);
+   margin-bottom: 15px;
+}
+h1 { font-size: 2.8rem; }
+h2 { font-size: 2.2rem; text-align: center; margin-bottom: 40px; }
+h3 { font-size: 1.5rem; }
+p { margin-bottom: 20px; }
+/* =========================================
+  3. HEADER & NAVIGATION
+  ========================================= */
+header {
+   background-color: var(--neon-blue);
+   padding: 0.5rem 0;
+   position: sticky;
+   top: 0;
+   z-index: 1000;
+   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+header .container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   position: relative;
+}
+header .logo img {
+   max-height: 50px;
+   vertical-align: middle;
+}
+/* --- Hamburger Menu Styling --- */
+.menu-toggle {
+   display: block; /* Always visible */
+   font-size: 2rem;
+   cursor: pointer;
+   color: #1a1a1a; /* Dark color for contrast on blue header */
+   margin-left: auto; /* Pushes button to far right */
+   padding: 0 10px;
+}
+/* The actual menu container (Hidden by default) */
+nav {
+   position: absolute;
+   top: 100%; /* Pushes it directly below the header */
+   /* Alignment & Width Settings */
+   right: 0;
+   left: auto;
+   width: 250px; /* Fixed width so it doesn't span full screen */
+   background-color: var(--card-bg);
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+   z-index: 1000;
+   display: none; /* Javascript toggles this to 'flex' */
+   flex-direction: column;
+   padding: 10px 0;
+   border-top: 1px solid #1a1a1a;
+   border-radius: 0 0 0 8px;
+}
+/* This class is added by the JavaScript to show the menu */
+nav.open {
+   display: flex;
+}
+header nav ul {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   padding: 0;
+   text-align: right; /* Text aligns to right */
+}
+header nav li {
+   margin: 0;
+   border-bottom: 1px solid #333;
+}
+header nav li:last-child {
+   border-bottom: none;
+}
+header nav a {
+   display: block;
+   text-decoration: none;
+   color: #fff;
+   font-weight: bold;
+   font-size: 1.2rem;
+   padding: 15px 30px;
+   transition: all 0.2s ease-in-out;
+}
+header nav a:hover, header nav a.active {
+   color: var(--neon-blue);
+   background-color: rgba(255,255,255,0.05);
+}
+/* =========================================
+  4. BUTTONS
+  ========================================= */
+.btn {
+   display: inline-block;
+   padding: 14px 28px;
+   background-color: var(--neon-blue);
+   /* White Text with Shadow */
+   color: #ffffff;
+   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+   text-decoration: none;
+   border: none;
+   border-radius: 5px;
+   font-weight: bold;
+   font-size: 1.1rem;
+   cursor: pointer;
+   transition: all 0.3s ease;
+}
+.btn:hover {
+   background-color: #33b5e5;
+   transform: translateY(-2px);
+}
+.btn-secondary {
+   background-color: transparent;
+   color: #fff;
+   border: 2px solid #fff;
+   text-shadow: none;
+}
+.btn-secondary:hover {
+   background-color: #fff;
+   color: #1a1a1a;
+}
+.btn-group {
+   display: flex;
+   gap: 15px;
+   justify-content: center;
+   margin-top: 20px;
+}
+.center-btn-wrap {
+   text-align: center;
+   margin-top: 40px;
+}
+/* =========================================
+  5. SECTIONS & LAYOUT
+  ========================================= */
+main {
+   padding: 40px 0;
+}
+/* Hero Section */
+
+.hero {
+
+    /* Changed from the black gradient to your standard Dark Grey */
+
+    background-color: var(--card-bg); 
+
+    text-align: center;
+
+    padding: 80px 30px;
+
+    border-radius: 8px;
+
+    /* Added a border to match the look of your other cards */
+
+    border: 1px solid #444; 
+
+    margin-bottom: 40px;
+
+}
+
+.hero h1 {
+
+    font-size: 3.5rem;
+
+    margin-bottom: 10px;
+
+    /* Updated shadow to be subtle instead of black */
+
+    text-shadow: 0 0 10px rgba(77, 210, 255, 0.2); 
+
+}
+
+.hero p {
+
+    font-size: 1.3rem;
+
+    color: #ccc;
+
+    margin-bottom: 30px;
+
+}
+ 
+/* Cards Grid (Services, Why Us) */
+.section-cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   gap: 25px;
+   margin-top: 30px;
+}
+.card {
+   background-color: var(--card-bg);
+   padding: 25px;
+   border-radius: 8px;
+   border: 1px solid #444;
+   /* NEW LAYOUT RULES: */
+   flex: 1 1 300px;  /* Starts at 300px, can shrink or grow... */
+   max-width: 800px; /* ...but NEVER wider than 400px */
+   width: 100%;      /* Ensures it fills space up to the max-width on mobile */
+   text-align: center;
+}
+.card h3 {
+   border-bottom: 2px solid var(--neon-blue);
+   padding-bottom: 10px;
+   display: inline-block;
+}
+.card ul {
+   list-style: none;
+   padding: 0;
+   text-align: left;
+   margin-top: 15px;
+}
+.card ul li {
+   padding: 5px 0;
+   border-bottom: 1px solid #333;
+}
+/* Content Box (Warranty, Contact, DIY) */
+.content-box {
+   background-color: var(--card-bg);
+   padding: 30px;
+   border-radius: 8px;
+   border: 1px solid #444;
+}
+.content-box blockquote {
+   font-size: 1.2rem;
+   font-style: italic;
+   padding-left: 20px;
+   border-left: 4px solid var(--neon-blue);
+   margin: 20px 0;
+   color: #ccc;
+}
+/* =========================================
+  6. GALLERY STYLES
+  ========================================= */
+.gallery-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 20px;
+}
+.gallery-item {
+   background-color: #333;
+   border: 1px solid #555;
+   border-radius: 8px;
+   overflow: hidden;
+   text-align: center;
+}
+.gallery-item img {
+   width: 100%;
+   height: 250px;
+   object-fit: cover;
+   display: block;
+}
+.gallery-item p {
+   padding: 15px;
+   margin-bottom: 0;
+   color: #ccc;
+   font-style: italic;
+}
+/* =========================================
+  7. REVIEWS STYLES (Fixed Size Tiles)
+  ========================================= */
+.review-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 25px;
+   margin-bottom: 50px;
+}
+.review-card {
+   background-color: var(--card-bg);
+   padding: 30px;
+   border-radius: 8px;
+   border: 1px solid #444;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   height: 350px; /* Fixed initial height */
+   transition: height 0.3s ease;
+}
+.review-text-container {
+   flex-grow: 1;
+   overflow: hidden;
+   margin-bottom: 15px;
+   position: relative;
+}
+.review-quote {
+   font-size: 1.1rem;
+   font-style: italic;
+   color: #f5f5f5;
+   margin: 0;
+   display: -webkit-box;
+   -webkit-line-clamp: 6; /* Limits lines */
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+}
+/* Expanded state for Read More */
+.review-card.expanded {
+   height: auto;
+   min-height: 350px;
+}
+.review-card.expanded .review-quote {
+   -webkit-line-clamp: unset;
+   overflow: visible;
+}
+.read-more-btn {
+   background: none;
+   border: none;
+   color: var(--neon-blue);
+   cursor: pointer;
+   font-size: 0.9rem;
+   padding: 0;
+   margin-top: 5px;
+   text-decoration: underline;
+   display: none; /* Hidden by default, JS enables it */
+}
+.review-author {
+   margin-top: auto;
+   border-top: 1px solid #444;
+   padding-top: 15px;
+}
+/* =========================================
+  8. FORMS (Request Service)
+  ========================================= */
+.form-container {
+   max-width: 800px;
+   margin: 0 auto;
+   background-color: var(--card-bg);
+   padding: 30px;
+   border-radius: 8px;
+}
+.form-group { margin-bottom: 20px; }
+.form-group label {
+   display: block;
+   font-weight: bold;
+   margin-bottom: 8px;
+   color: var(--neon-blue);
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+   width: 100%;
+   padding: 12px;
+   border: 1px solid #555;
+   background-color: #333;
+   color: #f5f5f5;
+   border-radius: 5px;
+   font-size: 1rem;
+   font-family: inherit;
+}
+.form-group textarea {
+   min-height: 150px;
+   resize: vertical;
+}
+.form-group .radio-group label {
+   font-weight: normal;
+   display: block;
+   margin-bottom: 8px;
+   color: #f5f5f5;
+}
+.form-group .radio-group input {
+   margin-right: 10px;
+   accent-color: var(--neon-blue);
+}
+.form-group button {
+   width: 100%;
+   font-size: 1.2rem;
+}
+/* =========================================
+  9. FOOTER
+  ========================================= */
+footer {
+   text-align: center;
+   padding: 40px 20px;
+   margin-top: auto;
+   background-color: #252525;
+   border-top: 2px solid #444;
+   color: #aaa;
+}
+footer p { margin: 5px 0; }
+footer a {
+   color: #a0e8ff;
+   text-decoration: underline;
+   transition: color 0.2s ease-in-out;
+}
+footer a:hover { color: #f5f5f5; }
+.social-icons {
+   text-align: center;
+   margin-top: 15px;
+}
+.social-icons a { margin: 0 10px; }
+.social-icons img {
+   width: 32px;
+   height: 32px;
+   opacity: 0.7;
+   transition: opacity 0.2s ease-in-out;
+}
+.social-icons img:hover { opacity: 1; }
+/* =========================================
+  10. FLOATING TEXT BUTTON
+  ========================================= */
+.floating-text-btn {
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   /* BACKGROUND IS NOW BRIGHT BLUE */
+   background-color: #4dd2ff;
+   /* TEXT IS NOW BLACK */
+   color: #000000;
+   padding: 12px 24px;
+   border-radius: 50px;
+   font-weight: bold;
+   font-size: 1.1rem;
+   text-decoration: none;
+   box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+   z-index: 2000;
+   transition: transform 0.3s ease, background-color 0.3s ease;
+   display: flex;
+   align-items: center;
+   gap: 8px;
+}
+.floating-text-btn:hover {
+   transform: translateY(-3px);
+   /* On hover, turns White with Blue text */
+   background-color: #ffffff;
+   color: #4dd2ff;
+}

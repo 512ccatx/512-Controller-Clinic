@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Service - 512 Controller Clinic</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <meta name="description" content="Ready to fix your stick drift or build your dream controller? Fill out our request form for a free quote and shipping instructions. Fast Austin service.">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VP623EZ7RT"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-VP623EZ7RT');
+    </script>
+
+    <style>
+        /* Widget Specific Styles to match your Dark Theme */
+        .bdm-widget {
+            background-color: #252525;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-family: inherit;
+        }
+        .bdm-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .bdm-title {
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .bdm-badge {
+            background: #333;
+            color: #aaa;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid #555;
+        }
+        .bdm-btn-usb {
+            background-color: #007bff; /* Blue to match your likely theme */
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        .bdm-btn-usb:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+        .bdm-status {
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            min-height: 24px;
+        }
+        .bdm-result-box {
+            display: none; /* Hidden by default */
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 6px;
+            text-align: left;
+            animation: fadeIn 0.5s ease;
+        }
+        .bdm-result-title {
+            color: #fff;
+            font-size: 1.8rem;
+            margin: 5px 0;
+            font-weight: 800;
+        }
+        .bdm-result-desc {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        .manual-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .manual-btn {
+            background: #333;
+            border: 1px solid #555;
+            color: #fff;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .manual-btn:hover {
+            border-color: #007bff;
+            background: #444;
+        }
+        details summary {
+            cursor: pointer;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            user-select: none;
+        }
+        details summary:hover { color: #fff; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Utility colors for JS */
+        .text-green { color: #4ade80; }
+        .text-red { color: #f87171; }
+        .text-yellow { color: #facc15; }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="512 Controller Clinic Logo">
+        </a>
+
+        <div class="menu-toggle" id="menuToggle">&#9776;</div>
+
+        <nav id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services & Repairs</a></li>
+                <li><a href="sell.html">Sell / Trade-In</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="warranty.html">Warranty</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="diy-resources.html">DIY / Parts</a></li>
+                <li><a href="request.html">Request Service</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Get a Free Quote</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Ready to get your controller fixed or start a custom build? Fill out the form below with as much detail as possible.</p>
+
+        <form class="form-container" action="https://formspree.io/f/mblqjpgg" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name (Required)</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your Email (Required)</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number (Great for text updates)</label>
+                <input type="text" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Street Address</label>
+                <input type="text" id="address" name="address" placeholder="123 Gaming Ln">
+            </div>
+
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city" placeholder="Austin">
+            </div>
+
+            <div class="form-group">
+                <label for="state">State</label>
+                <select id="state" name="state">
+                    <option value="" disabled selected>Select a State</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District Of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" name="zip" placeholder="78750">
+            </div>
+
+            <div class="form-group">
+                <label>How will you get your controller to us?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="delivery_method" value="Drop-Off"> Drop Off (Austin, TX)</label>
+                    <label><input type="radio" name="delivery_method" value="Mail-In" required> Customer Mail-In (I will ship it to you)</label>
+                    <label><input type="radio" name="delivery_method" value="Shipping-Label"> Request a prepaid shipping label (+$10) </label>
+                    <label><input type="radio" name="delivery_method" value="Request-Box"> Request a shipping box from us (+$25)</label>
+                    <label><input type="radio" name="delivery_method" value="Purchasing"> Buying a custom controller (Nothing to send in)</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>What service are you looking for? (Select all that apply)</label>
+                <div class="radio-group">
+                    <label><input type="checkbox" name="service_type" value="Repair"> Repair: My controller is broken</label>
+                    <label><input type="checkbox" name="service_type" value="Modification"> Modification / Upgrade</label>
+                    <label><input type="checkbox" name="service_type" value="Custom Build"> Custom Build (Refurbished/New)</label>
+                    <label><input type="checkbox" name="service_type" value="Deep Cleaning"> Deep Cleaning</label>
+                    <label><input type="checkbox" name="service_type" value="Other"> Other / Not Sure</label>
+                </div>
+            </div>
+
+            <div class="form-group" style="background: #333; padding: 15px; border-radius: 5px; border: 1px solid #555;">
+                <label style="color: #ffd700;">Service Speed</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="turnaround" value="Standard" checked> 
+                        Standard (&lt; 2 Weeks)
+                    </label>
+                    <label>
+                        <input type="radio" name="turnaround" value="Rush Service (+$50)"> 
+                        ⚡ Rush Service (+$50)
+                    </label>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 10px; color: #ccc; font-style: italic; line-height: 1.4;">
+                    Rush Service will move you to the front of the line.
+                </p>
+            </div>
+
+
+<div class="form-group">
+<label for="controller_model">What is your controller model? Please provide model number if you are able to. (Required)</label>
+<input type="text" id="controller_model" name="controller_model" placeholder="e.g., PS5 DualSense, Xbox Elite Series 2" required>
+</div>
+
+            
+<div class="bdm-widget" style="background-color: #252525; border: 1px solid #444; border-radius: 8px; padding: 20px; margin-bottom: 25px; text-align: center;">
+    
+    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 15px;">
+        <div style="color: #fff; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="17" cy="12" r="1"/></svg>
+            Identify Your Board (PS5)
+        </div>
+        <span style="background: #333; color: #aaa; font-size: 0.75rem; padding: 2px 8px; border-radius: 4px; border: 1px solid #555;">Tool</span>
+    </div>
+
+    <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 20px;">
+        Sending in a PS5 controller? Connect via USB (PC/Mac) to auto-detect your board version.
+    </p>
+
+    <button type="button" onclick="detectControllerBDM()" style="background-color: #007bff; color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 1rem;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        Auto-Detect via USB
+    </button>
+    
+    <div id="usbStatus" style="margin-top: 10px; font-family: monospace; font-size: 0.9rem; min-height: 24px;"></div>
+
+    <div id="resultDisplay" style="display: none; background: linear-gradient(135deg, #1a1a1a, #2a2a2a); border-left: 4px solid #007bff; padding: 15px; margin-top: 20px; border-radius: 6px; text-align: left;">
+        <p style="color: #007bff; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0;">Detected Model</p>
+        <h4 id="bdmTitle" style="color: #fff; font-size: 1.8rem; margin: 5px 0; font-weight: 800;">BDM-???</h4>
+        <p id="bdmDesc" style="color: #ccc; font-size: 0.9rem;">Details will appear here.</p>
+        <p style="font-size: 0.8rem; color: #4ade80; margin-top: 5px; font-style: italic;">✓ Added to description box below</p>
+    </div>
+
+    <details style="margin-top: 20px;">
+        <summary style="cursor: pointer; color: #888; font-size: 0.9rem; user-select: none;">Can't connect? Select by FCC ID (Back Label)</summary>
+        
+        <div style="margin-top: 15px; text-align: left;">
+            <label style="font-size: 0.8rem; color: #aaa; display: block; margin-bottom: 8px;">Last character of FCC ID (Ends in...)</label>
+            
+            <div style="display: flex; gap: 10px; justify-content: space-between;">
+                <button type="button" onclick="manualSelect('1')" style="flex: 1; background: #333; border: 1px solid #555; color: #fff; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">1</button>
+                <button type="button" onclick="manualSelect('A')" style="flex: 1; background: #333; border: 1px solid #555; color: #fff; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">A</button>
+                <button type="button" onclick="manualSelect('B')" style="flex: 1; background: #333; border: 1px solid #555; color: #fff; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">B</button>
+                <button type="button" onclick="manualSelect('C')" style="flex: 1; background: #333; border: 1px solid #555; color: #fff; padding: 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">C</button>
+            </div>
+            <p style="font-size: 0.75rem; color: #666; margin-top: 5px;">*Click the letter/number to select</p>
+        </div>
+    </details>
+</div>
+
+<div class="form-group">
+<label for="referral_source">How did you hear about us?</label>
+<select id="referral_source" name="referral_source" style="width: 100%; padding: 12px; border: 1px solid #555; background-color: #333; color: #f5f5f5; border-radius: 5px;">
+<option value="" disabled selected>Select an option</option>
+<option value="Google Search">Google Search</option>
+<option value="Google Maps">Google Maps</option>
+<option value="Facebook/Instagram">Facebook / Instagram</option>
+<option value="Reddit">Reddit</option>
+<option value="Nextdoor">Nextdoor</option>
+<option value="Word of Mouth">Friend / Word of Mouth</option>
+<option value="Return Customer">I am a Return Customer</option>
+<option value="Other">Other</option>
+</select>
+</div>
+
+<div class="form-group">
+<label for="description">Please describe the issue or the custom build you want. (Required)</label>
+<textarea id="description" name="description" placeholder="For repairs, please describe the problem. For custom builds, please list the features, colors, and upgrades you want." required></textarea>
+</div>
+
+<div style="background-color: #252525; padding: 15px; border-radius: 5px; border: 1px solid #444; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
+<span style="font-size: 0.9rem; color: #ccc;">Flexible Payment Options:</span>
+<img src="images/afterpay.png" alt="Afterpay" style="height: 20px;">
+</div>
+
+<p style="font-size: 0.9rem; color: #ccc; margin-bottom: 20px; font-style: italic;">
+*Please allow up to 24 hours for a reply with your quote and shipping instructions.
+</p>
+
+<button type="submit" class="btn">Send Request</button>
+</form>
+</div>
+</main>
+
+<footer>
+<div class="container">
+<p>512 Controller Clinic - Austin, Texas</p>
+<p>"Reducing e-waste, one controller at a time."</p>
+<p style="display:none"> Text Only: <a href="sms:8337145848">833.714.5848</a> </p>
+<p> Email: <a href="mailto:512ccatx@gmail.com">512ccatx@gmail.com</a> </p>
+
+<div class="social-icons">
+<a href="https://www.facebook.com/profile.php?id=61583093071897" target="_blank" rel="noopener noreferrer">
+<img src="images/facebook_logo.png" alt="512 Controller Clinic on Facebook">
+</a>
+<a href="https://www.instagram.com/512controllerclinic" target="_blank" rel="noopener noreferrer">
+<img src="images/instagram_logo.png" alt="512 Controller Clinic on Instagram">
+</a>
+</div>
+</div>
+</footer>
+
+<p style="display:none"><a href="sms:8337145848" class="floating-text-btn">
+💬 Text Us
+</a>
+
+    
+
+<script>
+    // --- UNIVERSAL SONY CONTROLLER IDENTIFIER (FIXED SERIAL READ) ---
+
+    // 1. UI UPDATER
+    function updateDescriptionBox(text) {
+        const descBox = document.getElementById('description');
+        const newNote = `[Auto-Detected: ${text} -- Please Do Not Delete]`; 
+        const noteRegex = /\[Auto-Detected:.*?\]/s;
+
+        if (descBox.value.match(noteRegex)) {
+            descBox.value = descBox.value.replace(noteRegex, newNote);
+        } else {
+            descBox.value += `\n\n${newNote}`;
+        }
+        
+        descBox.style.border = "2px solid #4ade80";
+        setTimeout(() => { descBox.style.border = "1px solid #555"; }, 1000);
+    }
+
+    // 2. SHOW RESULT
+    function showResult(title, desc, isError = false) {
+        const display = document.getElementById('resultDisplay');
+        const titleEl = document.getElementById('bdmTitle');
+        const descEl = document.getElementById('bdmDesc');
+        
+        display.style.display = 'block';
+        titleEl.innerText = title;
+        descEl.innerText = desc;
+        titleEl.style.color = isError ? "#f87171" : "#fff";
+    }
+
+    function manualSelect(idChar) {
+        let board = "";
+        if (idChar === '1') board = "BDM-010";
+        else if (idChar === 'A') board = "BDM-020/030";
+        else if (idChar === 'B') board = "BDM-040/050";
+        else if (idChar === 'C') board = "BDM-060";
+        showResult(board, "Selected via FCC ID.");
+        updateDescriptionBox(board);
+    }
+
+    // --- LOGIC: DUALSENSE (DS5) ---
+    function getDS5Board(hwVersion) {
+        const major = (hwVersion >> 8) & 0xff; 
+        if (major === 0) return "LOCKED"; 
+        if (major === 3) return "BDM-010";
+        if (major === 4) return "BDM-020";
+        if (major === 5) return "BDM-030";
+        if (major === 6) return "BDM-040";
+        if (major === 7 || major === 8) return "BDM-050";
+        if (major === 17 || major === 19) return "BDM-060"; 
+        return "UNKNOWN";
+    }
+
+    async function unlockDS5(device) {
+        try {
+            // 1. Send Magic Packet
+            const payload = new Uint8Array([0x03, 0x02, 0x65, 0x32, 0x40, 0x0C]);
+            await device.sendFeatureReport(0x80, payload);
+            
+            // 2. CRITICAL FIX: Read the response to clear the buffer!
+            // The file shows: const data = await this.receiveFeatureReport(0x81);
+            await device.receiveFeatureReport(0x81);
+            
+        } catch (e) { console.warn("Unlock/Flush failed", e); }
+    }
+
+    async function getDS5Serial(device) {
+        try {
+            // Request Serial: Base 1, ID 19
+            await device.sendFeatureReport(0x80, new Uint8Array([1, 19]));
+            
+            // Read Response
+            const report = await device.receiveFeatureReport(0x81);
+            const data = new Uint8Array(report.buffer);
+            
+            // Validation: Byte 1 must be 1, Byte 2 must be 19
+            if (data[1] === 1 && data[2] === 19) {
+                // Serial is at Offset 4, Length 17
+                const serialBytes = data.slice(4, 4 + 17);
+                const decoder = new TextDecoder();
+                return decoder.decode(serialBytes).replace(/\0/g, '').trim();
+            }
+            return "Unknown";
+        } catch (e) { return "Unknown"; }
+    }
+
+    // --- LOGIC: DUALSHOCK 4 (DS4) ---
+    function getDS4Board(hwVer) {
+        const a = hwVer >> 8;
+        if(a == 0x31) return "JDM-001";
+        if(a == 0x43) return "JDM-011";
+        if(a == 0x54) return "JDM-030";
+        if(a >= 0x64 && a <= 0x74) return "JDM-040";
+        if((a > 0x80 && a < 0x84) || a == 0x93) return "JDM-020";
+        if(a == 0xa4 || a == 0x90 || a == 0xa0) return "JDM-050";
+        if(a == 0xb4) return "JDM-055";
+        return "JDM-Unknown";
+    }
+
+    async function identifyDS4(device) {
+        try {
+            // 1. Read HW Version (Report 0xA3)
+            const report = await device.receiveFeatureReport(0xA3);
+            const data = new DataView(report.buffer);
+            const hwVerMinor = data.getUint16(0x23, true); 
+            const board = getDS4Board(hwVerMinor);
+            
+            // 2. Read MAC/Serial (Report 0x12)
+            let serial = "Unknown";
+            try {
+                const macReport = await device.receiveFeatureReport(0x12);
+                const macData = new Uint8Array(macReport.buffer);
+                // MAC is bytes 1-6
+                serial = Array.from(macData.slice(1, 7))
+                    .map(b => b.toString(16).toUpperCase().padStart(2, '0'))
+                    .join(':');
+            } catch(e) {}
+
+            return { board: `DualShock 4 (${board})`, serial: serial };
+
+        } catch (e) {
+            if (device.productId === 0x05C4) return { board: "DualShock 4 (Gen 1)", serial: "Unknown" };
+            if (device.productId === 0x09CC) return { board: "DualShock 4 (Gen 2)", serial: "Unknown" };
+            return { board: "DualShock 4 (Read Failed)", serial: "Unknown" };
+        }
+    }
+
+    // --- MAIN DETECTION ---
+    async function detectControllerBDM() {
+        const status = document.getElementById('usbStatus');
+        const detailsDropdown = document.querySelector('details');
+
+        // Firefox Check
+        if (!("hid" in navigator)) {
+            const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+            if (isFirefox) {
+                status.innerHTML = `
+                    <span class='text-red'>Firefox detected! WebHID is disabled.</span><br>
+                    <a href='https://addons.mozilla.org/en-US/firefox/addon/enable-webhid/' target='_blank' 
+                       style='color: #4ade80; text-decoration: underline; font-weight: bold; margin-top: 5px; display: inline-block;'>
+                       Click here to install 'Enable WebHID'
+                    </a>
+                    <br><span class='text-red'>Then refresh this page.</span>
+                `;
+            } else {
+                status.innerHTML = "<span class='text-red'>Browser not supported. Please use Chrome, Edge, or Opera.</span>";
+            }
+            return;
+        }
+
+        try {
+            const filters = [{ vendorId: 0x054c }];
+            const devices = await navigator.hid.requestDevice({ filters: filters });
+            
+            if (devices.length === 0) {
+                status.innerHTML = "<span class='text-yellow'>No device selected.</span>";
+                return;
+            }
+
+            const device = devices[0];
+            await device.open();
+
+            // 1. DUALSENSE (DS5) & EDGE
+            if (device.productId === 0x0CE6 || device.productId === 0x0DF2) {
+                const isEdge = (device.productId === 0x0DF2);
+                status.innerHTML = "<span class='text-blue'>Unlocking...</span>";
+                
+                try {
+                    // Unlock & Clear Buffer
+                    await unlockDS5(device);
+                    
+                    status.innerHTML = "<span class='text-green'>Reading Info...</span>";
+                    
+                    // Serial Read
+                    const serial = await getDS5Serial(device);
+
+                    // Chip Read (Report 0x20)
+                    const report = await device.receiveFeatureReport(0x20);
+                    const data = new DataView(report.buffer);
+                    const hwInfo = data.getUint32(24, true); 
+                    const board = getDS5Board(hwInfo);
+                    const hexID = "0x" + hwInfo.toString(16).toUpperCase();
+
+                    if (board === "LOCKED") throw new Error("Read Zero");
+                    
+                    let displayBoard = board;
+                    if (isEdge) displayBoard = "DualSense Edge";
+                    
+                    if (isEdge || board !== "UNKNOWN") {
+                        const logText = `${displayBoard} | Serial: ${serial}`;
+                        updateDescriptionBox(logText);
+                        showResult(displayBoard, `Serial: ${serial}\nInternal ID: ${hexID}`);
+                        status.innerHTML = "<span class='text-green'>Controller Identified!</span>";
+                        
+                        // Credit
+                        const display = document.getElementById('resultDisplay');
+                        if (!document.getElementById('creditLink')) {
+                            const credit = document.createElement('div');
+                            credit.id = 'creditLink';
+                            credit.innerHTML = "Logic adapted from <a href='https://dualshock-tools.github.io' target='_blank' style='color:#888;'>dualshock-tools</a>";
+                            display.appendChild(credit);
+                        }
+                    } else {
+                        console.warn("Unknown ID:", hexID);
+                        updateDescriptionBox(`Unknown ID: ${hexID} | Serial: ${serial}`);
+                        showResult("Unknown Revision", `Chip ID is ${hexID}. Serial: ${serial}`);
+                    }
+
+                } catch (readError) {
+                    console.error("Read Failed", readError);
+                    status.innerHTML = "<span class='text-yellow'>Check Back Label</span>";
+                    updateDescriptionBox("Sony DualSense (Please Select FCC ID)");
+                    showResult("Check Back Label", "Connected, but read blocked. Click FCC ID below.");
+                    if (detailsDropdown) detailsDropdown.open = true;
+                }
+            } 
+            // 2. DUALSHOCK 4 (DS4)
+            else if (device.productId === 0x05C4 || device.productId === 0x09CC) {
+                status.innerHTML = "<span class='text-green'>Identifying DS4...</span>";
+                const info = await identifyDS4(device);
+                const logText = `${info.board} | Serial: ${info.serial}`;
+                updateDescriptionBox(logText);
+                showResult(info.board, `MAC/Serial: ${info.serial}`);
+                status.innerHTML = "<span class='text-green'>DS4 Identified!</span>";
+            }
+            // 3. UNKNOWN
+            else {
+                status.innerHTML = "<span class='text-yellow'>Unknown Sony Device.</span>";
+                updateDescriptionBox(`Unknown Device (PID: 0x${device.productId.toString(16)})`);
+            }
+
+        } catch (error) {
+            console.error(error);
+            status.innerHTML = "<span class='text-red'>Connection failed.</span>";
+        }
+    }
+    
+    // Menu Logic
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('open');
+        menuToggle.innerHTML = mainNav.classList.contains('open') ? '&#10005;' : '&#9776;';
+    });
+</script>
+    
+
+</body>
+</html>
