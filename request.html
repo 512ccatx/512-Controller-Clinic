@@ -166,7 +166,7 @@
 </div>
         <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Ready to get your controller fixed or start a custom build? Fill out the form below with as much detail as possible.</p>
 
-        <form class="form-container" action="https://formspree.io/f/mblqjpgg" method="POST">
+        <form id="repairForm" class="form-container" action="https://formspree.io/f/mblqjpgg" method="POST">
             <div class="form-group">
                 <label for="name">Your Name (Required)</label>
                 <input type="text" id="name" name="name" required>
@@ -650,9 +650,19 @@
         menuToggle.innerHTML = mainNav.classList.contains('open') ? '&#10005;' : '&#9776;';
     });
 </script>
-    
+
+    <script>
+  document.getElementById("repairForm").addEventListener("submit", function() {
+    var fullName = document.getElementById("name").value;
+    if (fullName) {
+      var firstName = fullName.split(" ")[0]; // Grabs just the first name
+      sessionStorage.setItem("customerName", firstName);
+    }
+  });
+</script>
 
 </body>
 </html>
+
 
 
