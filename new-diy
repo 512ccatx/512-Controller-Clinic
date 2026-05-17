@@ -192,6 +192,18 @@
                     </div>
                 </div>
             </div>
+             <div class="article-card">
+                <img src="images/dirtycontroller.jpg" alt="Dirty Controller" class="article-image" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%231a1a1a%22 width=%22300%22 height=%22200%22/%3E%3Ctext fill=%22%23555%22 font-family=%22sans-serif%22 font-size=%2216%22 dy=%2210.5%22 font-weight=%22bold%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E[Thumbnail Image]%3C/text%3E%3C/svg%3E'">
+                <div class="article-content">
+                    <span class="article-badge">Article</span>
+                    <h3 class="article-title">The Importance of a Clean Clontroller</h3>
+                    <p class="article-desc">Sticky or unresponive buttons? Read this article on how even a controller that looks clean can have hidden grime lurking under the shell.</p>
+                    <div class="article-actions">
+                        <a href="article-cleaning.html" class="btn-read">Read Article</a>
+                        <a href="YOUR_AMAZON_AFFILIATE_LINK_HERE" target="_blank" rel="noopener" class="btn-affiliate">🛒 Buy the LED Kit Here</a>
+                    </div>
+                </div>
+            </div>
 
             <div class="article-card">
                 <img src="images/gulikit-thumbnail.jpg" alt="Gulikit Install Guide" class="article-image" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%231a1a1a%22 width=%22300%22 height=%22200%22/%3E%3Ctext fill=%22%23555%22 font-family=%22sans-serif%22 font-size=%2216%22 dy=%2210.5%22 font-weight=%22bold%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3E[Thumbnail Image]%3C/text%3E%3C/svg%3E'">
