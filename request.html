@@ -558,115 +558,100 @@
     }
 
     // --- MAIN DETECTION ---
-    async function detectControllerBDM() {
-        const status = document.getElementById('usbStatus');
-        const detailsDropdown = document.querySelector('details');
-
-        // Firefox Check
-        if (!("hid" in navigator)) {
-            const isFirefox = navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
-            if (isFirefox) {
-                status.innerHTML = `
-                    <span class='text-red'>Firefox detected! WebHID is disabled.</span><br>
-                    <a href='https://addons.mozilla.org/en-US/firefox/addon/enable-webhid/' target='_blank' 
-                       style='color: #4ade80; text-decoration: underline; font-weight: bold; margin-top: 5px; display: inline-block;'>
-                       Click here to install 'Enable WebHID'
-                    </a>
-                    <br><span class='text-red'>Then refresh this page.</span>
-                `;
-            } else {
-                status.innerHTML = "<span class='text-red'>Browser not supported. Please use Chrome, Edge, or Opera.</span>";
-            }
-            return;
-        }
-
-        try {
-            const filters = [{ vendorId: 0x054c }];
-            const devices = await navigator.hid.requestDevice({ filters: filters });
-            
-            if (devices.length === 0) {
-                status.innerHTML = "<span class='text-yellow'>No device selected.</span>";
-                return;
-            }
-
-            const device = devices[0];
-            await device.open();
-
-            // 1. DUALSENSE (DS5) & EDGE
-            if (device.productId === 0x0CE6 || device.productId === 0x0DF2) {
-                const isEdge = (device.productId === 0x0DF2);
-                status.innerHTML = "<span class='text-blue'>Unlocking...</span>";
-                
-                try {
-                    // Unlock & Clear Buffer
-                    await unlockDS5(device);
-                    
-                    status.innerHTML = "<span class='text-green'>Reading Info...</span>";
-                    
-                    // Serial Read
-                    const serial = await getDS5Serial(device);
-
-                    // Chip Read (Report 0x20)
-                    const report = await device.receiveFeatureReport(0x20);
-                    const data = new DataView(report.buffer);
-                    const hwInfo = data.getUint32(24, true); 
-                    const board = getDS5Board(hwInfo);
-                    const hexID = "0x" + hwInfo.toString(16).toUpperCase();
-
-                    if (board === "LOCKED") throw new Error("Read Zero");
-                    
-                    let displayBoard = board;
-                    if (isEdge) displayBoard = "DualSense Edge";
-                    
-                    if (isEdge || board !== "UNKNOWN") {
-                        const logText = `${displayBoard} | Serial: ${serial}`;
-                        updateDescriptionBox(logText);
-                        showResult(displayBoard, `Serial: ${serial}\nInternal ID: ${hexID}`);
-                        status.innerHTML = "<span class='text-green'>Controller Identified!</span>";
-                        
-                        // Credit
-                        const display = document.getElementById('resultDisplay');
-                        if (!document.getElementById('creditLink')) {
-                            const credit = document.createElement('div');
-                            credit.id = 'creditLink';
-                            credit.innerHTML = "Logic adapted from <a href='https://dualshock-tools.github.io' target='_blank' style='color:#888;'>dualshock-tools</a>";
-                            display.appendChild(credit);
-                        }
-                    } else {
-                        console.warn("Unknown ID:", hexID);
-                        updateDescriptionBox(`Unknown ID: ${hexID} | Serial: ${serial}`);
-                        showResult("Unknown Revision", `Chip ID is ${hexID}. Serial: ${serial}`);
-                    }
-
-                } catch (readError) {
-                    console.error("Read Failed", readError);
-                    status.innerHTML = "<span class='text-yellow'>Check Back Label</span>";
-                    updateDescriptionBox("Sony DualSense (Please Select FCC ID)");
-                    showResult("Check Back Label", "Connected, but read blocked. Click FCC ID below.");
-                    if (detailsDropdown) detailsDropdown.open = true;
-                }
-            } 
-            // 2. DUALSHOCK 4 (DS4)
-            else if (device.productId === 0x05C4 || device.productId === 0x09CC) {
-                status.innerHTML = "<span class='text-green'>Identifying DS4...</span>";
-                const info = await identifyDS4(device);
-                const logText = `${info.board} | Serial: ${info.serial}`;
-                updateDescriptionBox(logText);
-                showResult(info.board, `MAC/Serial: ${info.serial}`);
-                status.innerHTML = "<span class='text-green'>DS4 Identified!</span>";
-            }
-            // 3. UNKNOWN
-            else {
-                status.innerHTML = "<span class='text-yellow'>Unknown Sony Device.</span>";
-                updateDescriptionBox(`Unknown Device (PID: 0x${device.productId.toString(16)})`);
-            }
-
-        } catch (error) {
-            console.error(error);
-            status.innerHTML = "<span class='text-red'>Connection failed.</span>";
-        }
-    }
-    
+   async function detectControllerBDM() {
+   const statusDiv = document.getElementById('usbStatus');
+   const resultBox = document.getElementById('resultDisplay');
+   const bdmTitle = document.getElementById('bdmTitle');
+   const bdmDesc = document.getElementById('bdmDesc');
+   try {
+       statusDiv.innerHTML = "<span class='text-yellow'>Requesting USB access...</span>";
+       // Listen for PS5 (0x0CE6), PS4 V1 (0x05C4), and PS4 V2 (0x09CC)
+       const device = await navigator.usb.requestDevice({
+           filters: [
+               { vendorId: 0x054C, productId: 0x0CE6 },
+               { vendorId: 0x054C, productId: 0x05C4 },
+               { vendorId: 0x054C, productId: 0x09CC }  
+           ]
+       });
+       await device.open();
+       // Grab the serial number if Sony provided one!
+       let serialNum = device.serialNumber ? device.serialNumber : "Not provided by hardware";
+       let detectedModel = "Unknown";
+       let detectedDetails = "";
+       // ----- IF PS4 DUALSHOCK 4 -----
+       if (device.productId === 0x05C4 || device.productId === 0x09CC) {
+           if (device.productId === 0x05C4) {
+               detectedModel = "DS4 (V1 / JDM-001 to 030)";
+               detectedDetails = "Older PS4 Controller. Does not have the lightbar strip on the touchpad.";
+           } else if (device.productId === 0x09CC) {
+               detectedModel = "DS4 (V2 / JDM-040 to 055)";
+               detectedDetails = "Newer PS4 Controller. Has the lightbar strip visible on the touchpad.";
+           }
+           statusDiv.innerHTML = "<span class='text-green'>✓ PS4 Connection Successful</span>";
+           bdmTitle.innerText = detectedModel;
+           bdmDesc.innerText = detectedDetails + "\nSerial: " + serialNum;
+           resultBox.style.display = 'block';
+           // Auto-inject into the form's description box
+           const descBox = document.getElementById('description');
+           if(descBox) {
+               descBox.value = "Detected Model: " + detectedModel + "\nSerial: " + serialNum + "\n\n" + descBox.value;
+           }
+           await device.close();
+           return; // Stop here, since DS4 doesn't support the PS5 BDM firmware check
+       }
+       // ----- IF PS5 DUALSENSE -----
+       if (device.configuration === null) await device.selectConfiguration(1);
+       await device.claimInterface(3);
+       statusDiv.innerHTML = "<span class='text-yellow'>Reading PS5 hardware report...</span>";
+       const report = await device.controlTransferIn({
+           requestType: 'class',
+           recipient: 'interface',
+           request: 0x01,
+           value: 0x0320,
+           index: 3
+       }, 64);
+       if (report.status === 'ok') {
+           const data = new DataView(report.data.buffer);
+           const hwVersion = data.getUint32(24, true);
+           const swVersion = data.getUint32(28, true);
+           if (hwVersion === 0x00000211 || hwVersion === 0x00000212) {
+               detectedModel = "BDM-010";
+               detectedDetails = "Generation 1 board. No letter on the back label.";
+           } else if (hwVersion === 0x00000216 || hwVersion === 0x00000218) {
+               // THE 020 / 030 SPLIT LOGIC
+               if (swVersion > 0x04000000 || device.deviceVersionMajor > 1) {
+                   detectedModel = "BDM-030";
+                   detectedDetails = "Generation 3 board. Back label FCC ID ends in 'B'.";
+               } else {
+                   detectedModel = "BDM-020";
+                   detectedDetails = "Generation 2 board. Back label FCC ID ends in 'A'.";
+               }
+           } else if (hwVersion === 0x00000220 || hwVersion === 0x00000222) {
+               detectedModel = "BDM-040";
+               detectedDetails = "Generation 4 board. Back label FCC ID ends in 'C'.";
+           } else if (hwVersion >= 0x00000224) {
+               detectedModel = "BDM-050";
+               detectedDetails = "Generation 5 board. Latest layout.";
+           }
+           // Update UI
+           statusDiv.innerHTML = "<span class='text-green'>✓ PS5 Connection Successful</span>";
+           bdmTitle.innerText = detectedModel;
+           bdmDesc.innerText = detectedDetails + "\nSerial: " + serialNum;
+           resultBox.style.display = 'block';
+           // Auto-inject into the form's description box
+           const descBox = document.getElementById('description');
+           if(descBox) {
+               descBox.value = "Detected Model: " + detectedModel + "\nSerial: " + serialNum + "\n\n" + descBox.value;
+           }
+       } else {
+           statusDiv.innerHTML = "<span class='text-red'>Error: Could not read firmware block.</span>";
+       }
+       await device.close();
+   } catch (error) {
+       console.error(error);
+       statusDiv.innerHTML = "<span class='text-red'>Connection failed. Ensure the controller is plugged in directly via USB and your browser supports WebUSB.</span>";
+   }
+}
     // Menu Logic
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
