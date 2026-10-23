@@ -393,6 +393,24 @@
 </footer>
 
 <script>
+
+function openTermsModal() {
+    document.getElementById('termsModal').style.display = 'flex';
+}
+
+function closeTermsModal() {
+    document.getElementById('termsModal').style.display = 'none';
+}
+
+// Close modal if user clicks outside the modal box
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('termsModal');
+    if (event.target === modal) {
+        closeTermsModal();
+    }
+});
+
+
     // --- MULTI-CONTROLLER UI LOGIC ---
     let controllerCount = 1;
 
