@@ -619,5 +619,40 @@
     });
 </script>
 
+<!-- Terms & Conditions Modal Overlay -->
+<div id="termsModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); z-index: 9999; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #1e293b; border: 1px solid #334155; border-radius: 8px; width: 100%; max-width: 620px; max-height: 80vh; display: flex; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+        
+        <!-- Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; border-bottom: 1px solid #334155;">
+            <h3 style="margin: 0; color: #f8fafc; font-size: 1.2rem;">Terms & Conditions</h3>
+            <button type="button" onclick="closeTermsModal()" style="background: transparent; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; line-height: 1;">&times;</button>
+        </div>
+
+        <!-- Scrollable Content Body -->
+        <div style="padding: 20px; overflow-y: auto; color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+            <p><strong>1. Scope:</strong> 512 Controller Clinic specializes exclusively in controller diagnostics, repair, refurbishment, and custom mods. We do not service or repair consoles.</p>
+            
+            <div style="background: rgba(245, 158, 11, 0.1); border-left: 3px solid #f59e0b; padding: 10px 12px; margin: 12px 0;">
+                <strong style="color: #fbbf24;">30-Day Abandonment Notice:</strong> Completed invoices unpaid after thirty (30) days result in forfeiture and salvage/resale of the controller, unless prior communication and extension arrangements have been confirmed.
+            </div>
+
+            <p><strong>2. Estimates & Billing:</strong> Quotes are preliminary. Any unlisted internal faults discovered during teardown will be paused for authorization before proceeding. Invoices must be settled prior to return shipment or local drop-off collection.</p>
+
+            <p><strong>3. Shipping & Handoff:</strong> Inbound transit safety is the customer's responsibility. Local drop-offs occur at scheduled Anderson Mill meet points. Outbound returns include tracking.</p>
+
+            <p><strong>4. Core Exchange:</strong> Mainboards must be fully functional and free of severe corrosion or failed solder attempts to receive full core value credit.</p>
+
+            <p><strong>5. 90-Day Warranty:</strong> Covers parts and workmanship defects. Void on subsequent liquid exposure, drops/impact, or unauthorized third-party teardown.</p>
+        </div>
+
+        <!-- Footer -->
+        <div style="padding: 12px 20px; border-top: 1px solid #334155; text-align: right;">
+            <button type="button" onclick="closeTermsModal()" style="background: #0ea5e9; color: #fff; border: none; padding: 8px 18px; border-radius: 4px; font-weight: bold; cursor: pointer;">Close</button>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
