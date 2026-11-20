@@ -188,7 +188,7 @@
                 <p>Check out our diagnostic services or send your controller in for a full restoration today. We’ll make sure the only thing you have to worry about is your next high score.</p>
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
                     <a href="request.html" class="btn" style="background-color: #0ea5e9; color: white;">Get a Deep Clean Quote</a>
-                    <a href="vip-portal.html" class="btn" style="background-color: transparent; border: 1px solid #4ade80; color: #4ade80;">Are you a VIP Subscriber?</a>
+                   
                 </div>
             </div>
 
