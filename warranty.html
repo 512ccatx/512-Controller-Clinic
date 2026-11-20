@@ -23,30 +23,8 @@
 </script>
 
 <body>
-<header>
-<div class="container">
-<a href="index.html" class="logo">
-<img src="images/logo.png" alt="512 Controller Clinic Logo">
-</a>
-
-<div class="menu-toggle" id="menuToggle">&#9776;</div>
-
-<nav id="mainNav">
-<ul>
-<li><a href="index.html">Home</a></li>
-<li><a href="services.html">Services & Repairs</a></li>
-<li><a href="core-exchange.html">Core Exchange</a></li>
-<li><a href="request.html">Request Service</a></li>
-<li><a href="sell.html">Sell / Trade-In</a></li>
-<li><a href="gallery.html">Gallery</a></li>
-<li><a href="warranty.html" class="active">Warranty</a></li>
-<li><a href="reviews.html">Reviews</a></li>
-<li><a href="diy-resources.html">DIY / Parts</a></li>
-<li><a href="contact.html">Contact Us</a></li>
-</ul>
-</nav>
-</div>
-</header>
+  
+<header id="site-header"></header>
 
 <main>
 <div class="container">
@@ -100,33 +78,7 @@
 💬 Text Us
 </a>
 
-<script>
-const menuToggle = document.getElementById('menuToggle');
-const mainNav = document.getElementById('mainNav');
-
-menuToggle.addEventListener('click', function() {
-mainNav.classList.toggle('open');
-if (mainNav.classList.contains('open')) {
-menuToggle.innerHTML = '&#10005;'; 
-} else {
-menuToggle.innerHTML = '&#9776;'; 
-}
-});
-
-const navLinks = mainNav.querySelectorAll('a');
-navLinks.forEach(link => {
-link.addEventListener('click', function() {
-mainNav.classList.remove('open');
-menuToggle.innerHTML = '&#9776;';
-});
-});
-</script>
-
-</body>
-</html>
-
-});
-</script>
+<script src="nav.js"></script>
 
 <script src="weather.js"></script>
 
