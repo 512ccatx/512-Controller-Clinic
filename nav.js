@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
        { name: "Core Exchange", url: "core-exchange.html" },
        { name: "Request Service", url: "request.html" },
        { name: "Sell / Trade-In", url: "sell.html" },
+      { name: "Articles", url: "articles.html" },
        { name: "Gallery", url: "gallery.html" },
        { name: "Warranty", url: "warranty.html" },
        { name: "Reviews", url: "reviews.html" },
